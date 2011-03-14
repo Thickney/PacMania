@@ -1,0 +1,19 @@
+Note:
+My branch bhavek-work
+main branch pacmania-upstream
+
+git init - create the git repo
+
+git status - check the curr status of the dir and branch
+
+git add - adds files to be comitted
+git commit - comits to the local versio of the repo
+git push ubaniak/pacmania bhavek-work - pushes work to the server under the name ubaniak/pacmania in the bhavek-work branch
+
+git checkout -- filename - will revert to what is in repo
+git checkout branchname - change branches
+
+git branch - check which branch you are on
+
+git pull (from branch) (to branch) pulls from one branch to another. used for updating
+
