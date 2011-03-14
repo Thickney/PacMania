@@ -11,8 +11,8 @@
 					 	( tmp '() )
 					)
 					( loop for i from 0 to ( - ( length line ) 1 ) do
-								 ( setf tmp ( append tmp ( list char line i ) ) ) ) ) 
-					( setf *game-map* ( append *game-map* ( list  tmp ) ) ) ) 
+								 ( setf tmp ( append tmp ( list (char line i ) ) ) ) ) 
+					( setf *game-map* ( append *game-map* ( list  tmp ) ) ) ) )
 
 ( defun read-file ( filename )
 				 ( let 
