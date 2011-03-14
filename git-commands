@@ -15,5 +15,5 @@ git checkout branchname - change branches
 
 git branch - check which branch you are on
 
-git pull (from branch) (to branch) pulls from one branch to another. used for updating
+git pull (from branch) (to branch) pulls from one branch to another. used for updating local repos based on remote ones
 
