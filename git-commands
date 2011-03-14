@@ -17,3 +17,12 @@ git branch - check which branch you are on
 
 git pull (from branch) (to branch) pulls from one branch to another. used for updating local repos based on remote ones
 
+git rebase (branch name) -should be in a branch based off (branch name). Updates the current working branch to be based on (branch name)
+
+to update:
+----------------------------
+git checkout master
+git pull pacmania-upstream master
+git checkout bhavek-work
+git rebase master
+
