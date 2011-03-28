@@ -35,8 +35,8 @@
 
 ( defun add-to-open-list ( states s-type )
 				( cond
-					( ( equal s-type "bfs" ) ( setq *open* ( append states *open* ) ) )
-					( ( equal s-type "dfs" ) ( setq *open* ( append *open* states ) ) ) ) )
+					( ( equal s-type "dfs" ) ( setq *open* ( append states *open* ) ) )
+					( ( equal s-type "bfs" ) ( setq *open* ( append *open* states ) ) ) ) )
 
 ( defun add-to-results ( state ) ( setq *results* ( append ( list state ) *results* ) ) )
 

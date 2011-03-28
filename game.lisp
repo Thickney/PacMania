@@ -46,7 +46,7 @@
 ( defun show-results ( X )
 				( cond 
 					( ( null X ) nil )
-					( t ( print-map ( get-state ( car X ) ) ) ( show-results ( cdr X ) ) ) ) )
+					( t ( print-map ( get-state ( car X ) ) ) (sleep .7)  ( show-results ( cdr X ) ) ) ) )
 
 
 ( defun run-dfs ()
