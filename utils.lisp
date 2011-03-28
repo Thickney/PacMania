@@ -39,6 +39,25 @@
 
 ;;
 ;;-------------------------------
+;; 
+;;-------------------------------
+;;
+
+;; count the number of occurances
+;; of an item in a given board
+( defun count-occ ( board item n )
+				( cond
+					( ( null board ) n )
+					( ( position item ( car board ) ) ( count-occ ( cdr board ) item ( + n 1 ) ) )
+					( t ( count-occ ( cdr board ) item n ) ) ) )
+
+
+;;
+;;-------------------------------
+;;
+
+;;
+;;-------------------------------
 ;; my deep copy function
 ;;-------------------------------
 ;;

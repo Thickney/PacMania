@@ -2,38 +2,30 @@
 ;;
 ;;
 ;;
-
-( load "pacman.lisp" )
 ( load "utils.lisp" )
 ( load "map.lisp" )
+( load "search.lisp" )
 
 ( defvar *orig-map* '() )
+( defvar *pp* #\o )
+( defvar *dot* #\. )
 
-
-( defun gen-states ( state )
-				( remove-null ( list 
-						( list ( pacman-up    ( deep-cpy state '() ) *pacman* ) )
-						( list ( pacman-down  ( deep-cpy state '() ) *pacman* ) )
-						( list ( pacman-left  ( deep-cpy state '() ) *pacman* ) )
-						( list ( pacman-right ( deep-cpy state '() ) *pacman* ) ) ) ) )  
-
-( defun remove-null ( list )
+( defun game-over-pacman-wins ( board )
 				( cond
-					( ( null list ) nil )
-					( ( null ( caar list ) ) ( remove-null ( cdr list ) ) )
-					( t ( cons ( car list ) ( remove-null ( cdr list ) ) ) ) ) )
+					( ( and ( = ( count-occ board *dot* 0 ) 0 ) ( = ( count-occ board *pp* 0 ) 0 ) ) t )
+					( t nil ) ) )
+
+( defun game-over-pacman-loses ( board ) 
+				( cond 
+					( ( = ( count-occ board *pacman* 0 ) 0 ) t )
+					( t nil ) ) )
 
 ( defun game-state ( board timer )
 				 ( cond
 					 ( ( = timer 90 ) nil )
+					 ( ( game-over-pacman-wins board ) nil )
+					 ( ( game-over-pacman-loses board ) nil )
 					 ( t t ) ) )
-
-( defun chose-random ( moves )
-				( let
-					(
-					 	( rand ( random ( length moves ) ) )
-					)
-				( car ( nth rand moves ) ) ) )
 
 ( defun game-engine ( board timer )
 				( print-map board )
@@ -44,13 +36,30 @@
 				;	( ( null ( game-state board timer ) ) nil )
 				;	( t ( game-engine board ( + timer 1 ) ) ) ) )
 
-( defun simple-run ()
+( defun run-random ()
 			 ( clear-map )
 			 ( read-file "egmap.lay" )
 			 ( setf *orig-map* '() )
 			 ( setf *orig-map* ( deep-cpy *map* '() ) )
 			 ( game-engine ( deep-cpy *orig-map* '() ) 0 ) )
 
+( defun show-results ( X )
+				( cond 
+					( ( null X ) nil )
+					( t ( print-map ( get-state ( car X ) ) ) ( show-results ( cdr X ) ) ) ) )
+
+
+( defun run-dfs ()
+				( clear-map )
+				( read-file "egmap.lay" )
+				( run-search ( deep-cpy *map* '() ) "dfs" )
+				( show-results *results* ) )
+
+( defun run-bfs ()
+				( clear-map )
+				( read-file "egmap.lay" )
+				( run-search ( deep-cpy *map* '() ) "bfs" )
+				( show-results *results* ) )
 
 ( defun run () )
 
