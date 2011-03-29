@@ -25,6 +25,47 @@
 
 ;;
 ;;----------------------
+;; A* functions
+;;----------------------
+;;
+
+( defun rate-state (state)
+	( cond
+		( ( NULL state ) nil)
+		( T
+			;want to return some function of distance and number of dots left
+			(manhattan (find-pacman state) (closest-dot state))
+		)
+	)
+)
+
+( defun closest-item (state item)
+	( cond 
+		( ( null state) nil)
+		( T
+			(let
+				((items (find-item state item))
+				 (pmpos (nth 0 (find-item state *pacman*))))
+				(loop 	with min-elt = nil
+      					with min-key = 9999
+      				for elt in items
+      				for key = (manhattan pmpos elt) do
+      					(print key)
+						(when (< key min-key)
+        					(setq min-elt elt
+              				 	  min-key key))
+      				finally (print min-elt)
+				)
+			)
+		)
+	)
+)
+
+;;----------------------
+
+
+;;
+;;----------------------
 ;; Open-close list functions
 ;;----------------------
 ;;
