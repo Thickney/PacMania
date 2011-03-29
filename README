@@ -1,7 +1,11 @@
-This is an itial test of the pacman game.
-It only has pacman in a small world and he uses a random number to find his availible move
-and uses that.
+To load:
+(load "game")
 
-to run this example use ( simple-run )
-
+To run:
+	Random:
+		(simple-run)
+	BFS:
+		(run-bfs)
+	DFS:
+		(run-dfs)
 
